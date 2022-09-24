@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Rhythm Builder</title>
+</head>
+<body>
+<h1>Simple Rhythm Builder</h1>
+  <!-- Form to get input -->
+  <form id="rhythm-build">
+    <p>Time Signature</p>
+    <input type="radio" id="three-four" name="time-sig" value="3">
+    <label for="three-four">3/4</label><br>
+    <input type="radio" id="four-four" name="time-sig" value="4">
+    <label for="four-four">4/4</label><br>
+    <p>Subdivision</p>
+    <input type="radio" id="duple" name="sub-div" value="2">
+    <label for="duple">Eighth Notes</label><br>
+    <input type="radio" id="triplet" name="sub-div" value="3">
+    <label for="triplet">Triplet Notes</label><br>
+    <input type="radio" id="sixteenth" name="sub-div" value="4">
+    <label for="sixteenth">Sixteenth Notes</label><br><br>
+    <!-- Maybe should be <p> tag -->
+    <label for="notes">Number of Notes</label><br>
+    <input type="number" min="0" max="16" id="notes" name="notes"><br><br>
+    <!-- Submits data -->
+    <input type="submit" id="submit" value="Build">
+  </form>
+<script src="src/index.js"></script>
+</body>
+</html>

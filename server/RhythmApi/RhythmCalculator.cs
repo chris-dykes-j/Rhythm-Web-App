@@ -1,4 +1,4 @@
-namespace RhythmApi.Controllers;
+namespace RhythmApi;
 
 public class RhythmCalculator
 {
@@ -16,15 +16,35 @@ public class RhythmCalculator
    public IEnumerable<int> CalculateRhythm()
    {
       var bar = new int[_timeSignature];
+      var options = MakeOptions(_timeSignature);
       var random = new Random();
-      // I could use a nicer algorithm...
-      while (_totalNotes > 0)
+      
+      for (int k = _totalNotes; k > 0; k--)
       {
-         var i = random.Next(_timeSignature);
-         if (bar[i] >= _subDivision) continue;
-         bar[i]++;
-         _totalNotes--;
+         int i;
+         try
+         {
+            i = options[random.Next(0, options.Count - 1)];
+         }
+         catch (ArgumentOutOfRangeException e)
+         {
+            i = 0;
+         }
+
+         Console.WriteLine($"Options length: {options.Count-1}, i: {i}");
+         if (bar[options[i]] == _subDivision)
+            options.Remove(i);
+         else
+            bar[options[i]]++;
       }
       return bar;
+   }
+
+   private static List<int> MakeOptions(int length)
+   {
+      var options = new List<int>();
+      for (int i = 0; i < length; i++)
+         options.Add(i);
+      return options;
    }
 }

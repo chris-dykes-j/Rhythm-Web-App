@@ -1,15 +1,17 @@
 let timeSignature: number, subDivision: number, totalNotes: number;
 
 // Validates input, and fetches api.
-document.getElementById("rhythm-build").addEventListener("submit", e => {
+document.getElementById("rhythm-build")!.addEventListener("submit", e => {
   e.preventDefault();
   getInput();
-  validateInput();
-  getRhythm();
+  if (validateInput())
+    getRhythm();
+  else
+    displayError();
 });
 
 // Input method.
-function getInput() {
+function getInput(): void {
   document.getElementsByName("time-sig").forEach(option => {
     if ((<HTMLInputElement>option).checked)
       timeSignature = parseInt((<HTMLInputElement>option).value);
@@ -35,4 +37,8 @@ async function getRhythm() {
   fetch(`http://localhost:8080/${timeSignature}/${subDivision}/${totalNotes}`)
     .then(response => response.json())
     .then(data => console.log(data));
+}
+
+function displayError(): void {
+  
 }

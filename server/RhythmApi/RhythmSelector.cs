@@ -1,8 +1,6 @@
 namespace RhythmApi;
 
-// Trying to make a class that chooses which notes to use given a number of notes and the subdivision.
-// i.e. if you have one note with the space of a quarter note, you can choose either a quarter note or an eight rest then eight note,
-// or a doted eighth rest with a sixteenth note, etc...
+// Needs changed. Should now assign an image given a number sequence (string)
 public class RhythmSelector
 {
    private readonly int[] _bar;

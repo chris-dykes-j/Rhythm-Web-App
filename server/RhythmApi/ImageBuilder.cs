@@ -1,31 +1,30 @@
-using System.Drawing;
+using System.IO;
+using System.Reflection;
+using SkiaSharp;
 
 namespace RhythmApi;
 
 public class ImageBuilder
 {
-    private readonly string[] _notes;
-
-    public ImageBuilder(string[] notes)
+    private readonly List<string> _notes;
+    private readonly int _timeSignature;
+    
+    public ImageBuilder(List<string> notes, int timeSignature)
     {
         _notes = notes;
+        _timeSignature = timeSignature;
     }
 
-    public static Bitmap MakeImage(int timeSignature)
+    public SKBitmap MakeImage()
     {
-        var start = new Bitmap(@"./src/start.jpg");
-        var time = new Bitmap(@"./src/" + 
-           ((timeSignature == 4)
-           ? "44.jpg"
-           : "34.jpg"));
-        var result = new Bitmap(start.Width + time.Width, Math.Max(start.Height, time.Height));
-        
-        using (Graphics graphics = Graphics.FromImage(result))
+        SKBitmap time = new();
+        string timeSource = _timeSignature == 4 ? "RhythemApi.src.44.jpg" : "RhythmApi.src.34.jpg";
+        var assembly = GetType().GetTypeInfo().Assembly;
+        using (var stream = assembly.GetManifestResourceStream(timeSource))
         {
-            graphics.DrawImage(start, 0, 0);
-            graphics.DrawImage(time, start.Width, 0);
+            if (stream != null)
+                time = SKBitmap.Decode(stream);
         }
-
-        return result;
+        return time; // test if works
     }
 }

@@ -3,6 +3,7 @@ using SkiaSharp;
 
 namespace RhythmApi;
 
+// Creates the final product.
 public class ImageBuilder
 {
     private readonly List<string> _notes;
@@ -14,10 +15,11 @@ public class ImageBuilder
         _timeSignature = timeSignature;
     }
 
+    // Makes the image.
     public SKBitmap MakeImage()
     {
         SKBitmap result;
-        var start = MakeTimeSignature();
+        var start = GetTimeSignature();
         var rhythms = GetRhythmImages();
 
         int width = start.Width; // Width of the entire measure
@@ -37,7 +39,8 @@ public class ImageBuilder
         return result;
     }
     
-    private SKBitmap MakeTimeSignature()
+    // Gets the time signature image
+    private SKBitmap GetTimeSignature()
     {
         var bitmap = new SKBitmap();
         string timeSource = _timeSignature == 4 ? "RhythmApi.src.44.jpg" : "RhythmApi.src.34.jpg";
@@ -63,7 +66,7 @@ public class ImageBuilder
             {
                 using var stream = assembly.GetManifestResourceStream(option); 
                 var item = SKBitmap.Decode(stream);
-                int index = _notes.IndexOf(imageLink);
+                int index = _notes.IndexOf(imageLink); // Using index to keep the same order as before.
                 list[index] = item;
             }
         }

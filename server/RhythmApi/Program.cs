@@ -8,7 +8,7 @@ foreach (var beat in beats)
     Console.WriteLine(beat);
 
 // Create image test
-var imgBuilder = new ImageBuilder(beats, 3);
+var imgBuilder = new ImageBuilder(beats, 4);
 var result = imgBuilder.MakeImage();
 
 // Save image test

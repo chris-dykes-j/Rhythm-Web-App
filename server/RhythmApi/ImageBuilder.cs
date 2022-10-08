@@ -20,9 +20,10 @@ public class ImageBuilder
         var bitmap = new SKBitmap();
         string timeSource = _timeSignature == 4 ? "RhythmApi.src.44.jpg" : "RhythmApi.src.34.jpg";
         var assembly = Assembly.GetExecutingAssembly();
-        var stream = assembly.GetManifestResourceStream(timeSource); 
-        bitmap = SKBitmap.Decode(stream);
-        
+        using (var stream = assembly.GetManifestResourceStream(timeSource))
+        {
+            bitmap = SKBitmap.Decode(stream);
+        }
         return bitmap;
     }
 }

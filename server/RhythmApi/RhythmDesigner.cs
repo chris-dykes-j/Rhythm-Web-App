@@ -1,6 +1,6 @@
 namespace RhythmApi;
 
-public class RhythmCalculator
+public class RhythmDesigner
 {
    private readonly int _timeSignature;
    private readonly int _subDivision;
@@ -8,7 +8,7 @@ public class RhythmCalculator
    
    private readonly Random _random = new Random();
    
-   public RhythmCalculator(int timeSignature, int subDivision, int totalNotes)
+   public RhythmDesigner(int timeSignature, int subDivision, int totalNotes)
    {
       _timeSignature = timeSignature;
       _subDivision = subDivision;
@@ -18,43 +18,39 @@ public class RhythmCalculator
    // Creates the rhythm, as a list of numbers.
    private int[] AssignNotePlacement()
    {
-      int[] bar = new int[_timeSignature];
-      List<int> options = MakeOptionList(_timeSignature);
-      
-      while (_totalNotes > 0) 
+      int[] measure = new int[_timeSignature];
+      var options = MakeOptionList(_timeSignature);
+      while (_totalNotes > 0)
       {
          int index = _random.Next(0, options.Count);
          int choice = options[index];
-         if (bar[choice] == _subDivision)
+         if (measure[choice] == _subDivision)
             options.RemoveAt(index);
          else
          {
-            bar[choice]++;
+            measure[choice]++;
             _totalNotes--;
          }
       }
-      
-      return bar;
+      return  measure;
    }
 
    // Making the rhythm choice here as a sequence of ones and zeros.
    // i.e. 1010 is two eighth notes, 0010 is an eight rest and note, etc.
    public List<string> AssignRhythms()
    {
-      int[] bar = AssignNotePlacement();
+      int[] measure = AssignNotePlacement();
       List<string> result = new();
-      
-      foreach (int notes in bar)
+      foreach (int notes in measure)
       {
          List<char> beat = new();
          for (int i = 0; i < notes; i++)
             beat.Add('1');
          while (beat.Count < _subDivision)
             beat.Add('0');
-         var item = String.Join("", beat.OrderBy(c => _random.Next()));
+         var item = string.Join("", beat.OrderBy(c => _random.Next()));
          result.Add(item); 
       }
-      
       return result;
    }
    

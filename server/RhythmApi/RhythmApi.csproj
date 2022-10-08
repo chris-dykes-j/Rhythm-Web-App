@@ -22,6 +22,44 @@
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Images.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+      <None Remove="src\44.jpg" />
+      <EmbeddedResource Include="src\44.jpg" />
+      <None Remove="src\34.jpg" />
+      <EmbeddedResource Include="src\34.jpg" />
+      <None Remove="src\0000.jpg" />
+      <EmbeddedResource Include="src\0000.jpg" />
+      <None Remove="src\0001.jpg" />
+      <EmbeddedResource Include="src\0001.jpg" />
+      <None Remove="src\0010.jpg" />
+      <EmbeddedResource Include="src\0010.jpg" />
+      <None Remove="src\0011.jpg" />
+      <EmbeddedResource Include="src\0011.jpg" />
+      <None Remove="src\0100.jpg" />
+      <EmbeddedResource Include="src\0100.jpg" />
+      <None Remove="src\0101.jpg" />
+      <EmbeddedResource Include="src\0101.jpg" />
+      <None Remove="src\0110.jpg" />
+      <EmbeddedResource Include="src\0110.jpg" />
+      <None Remove="src\0111.jpg" />
+      <EmbeddedResource Include="src\0111.jpg" />
+      <None Remove="src\1000.jpg" />
+      <EmbeddedResource Include="src\1000.jpg" />
+      <None Remove="src\1001.jpg" />
+      <EmbeddedResource Include="src\1001.jpg" />
+      <None Remove="src\1010.jpg" />
+      <EmbeddedResource Include="src\1010.jpg" />
+      <None Remove="src\1011.jpg" />
+      <EmbeddedResource Include="src\1011.jpg" />
+      <None Remove="src\1100.jpg" />
+      <EmbeddedResource Include="src\1100.jpg" />
+      <None Remove="src\1101.jpg" />
+      <EmbeddedResource Include="src\1101.jpg" />
+      <None Remove="src\1110.jpg" />
+      <EmbeddedResource Include="src\1110.jpg" />
+      <None Remove="src\1111.jpg" />
+      <EmbeddedResource Include="src\1111.jpg" />
+      <None Remove="src\start.jpg" />
+      <EmbeddedResource Include="src\start.jpg" />
     </ItemGroup>
 
     <ItemGroup>

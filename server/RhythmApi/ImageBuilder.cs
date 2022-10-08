@@ -14,16 +14,15 @@ public class ImageBuilder
         _timeSignature = timeSignature;
     }
 
+    // Test with the time signature to start.
     public SKBitmap MakeImage()
     {
-        SKBitmap time = new();
-        string timeSource = _timeSignature == 4 ? "RhythemApi.src.44.jpg" : "RhythmApi.src.34.jpg";
-        var assembly = GetType().GetTypeInfo().Assembly;
-        using (var stream = assembly.GetManifestResourceStream(timeSource))
-        {
-            if (stream != null)
-                time = SKBitmap.Decode(stream);
-        }
-        return time; // test if works
+        var bitmap = new SKBitmap();
+        string timeSource = _timeSignature == 4 ? "RhythmApi.src.44.jpg" : "RhythmApi.src.34.jpg";
+        var assembly = Assembly.GetExecutingAssembly();
+        var stream = assembly.GetManifestResourceStream(timeSource); 
+        bitmap = SKBitmap.Decode(stream);
+        
+        return bitmap;
     }
 }

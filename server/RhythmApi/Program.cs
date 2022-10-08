@@ -1,14 +1,13 @@
 using RhythmApi;
 using SkiaSharp;
 
-var calculator = new RhythmDesigner(4, 4, 9);
-var beats = calculator.AssignRhythms();
-
+// Create blueprint test
+var blueprint = new RhythmDesigner(4, 4, 9);
+var beats = blueprint.AssignRhythms();
 foreach (var beat in beats) 
-{
     Console.WriteLine(beat);
-}
 
+// Create image test
 var imgBuilder = new ImageBuilder(beats, 3);
 var result = imgBuilder.MakeImage();
 

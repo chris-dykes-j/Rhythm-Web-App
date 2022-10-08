@@ -1,7 +1,7 @@
 using RhythmApi;
 using SkiaSharp;
 
-var calculator = new RhythmCalculator(4, 4, 9);
+var calculator = new RhythmDesigner(4, 4, 9);
 var beats = calculator.AssignRhythms();
 
 foreach (var beat in beats) 

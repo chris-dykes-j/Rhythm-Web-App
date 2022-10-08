@@ -27,13 +27,11 @@ public class ImageBuilder
         using (var canvas = new SKCanvas(result))
         {
             canvas.DrawBitmap(start, 0, 0);
-            // Nested for loop is never nice...
+            float x = start.Width;
             rhythms.ForEach(rhythm =>
-            {
-                for (float x = start.Width; x < width; x += rhythm.Width)
-                {
-                    canvas.DrawBitmap(rhythm, x, 0);
-                }    
+            { 
+                canvas.DrawBitmap(rhythm, x, 0);
+                x += rhythm.Width;
             });
         }
         return result;
@@ -53,20 +51,22 @@ public class ImageBuilder
 
     private List<SKBitmap> GetRhythmImages()
     {
-        var list = new List<SKBitmap>(); 
+        var list = new SKBitmap[_notes.Count]; 
         var assembly = Assembly.GetExecutingAssembly();
         var options = assembly.GetManifestResourceNames().ToList();
         
         // This has lots of problems.
         foreach (string option in options)
         {
-            string image = option.Replace("RhythmApi.src.", "").Replace(".jpg", "");
-            if (_notes.Contains(image))
+            string imageLink = option.Replace("RhythmApi.src.", "").Replace(".jpg", "");
+            if (_notes.Contains(imageLink))
             {
                 using var stream = assembly.GetManifestResourceStream(option); 
-                list.Add(SKBitmap.Decode(stream));
+                var item = SKBitmap.Decode(stream);
+                int index = _notes.IndexOf(imageLink);
+                list[index] = item;
             }
         }
-        return list;
+        return list.ToList();
     }
 }

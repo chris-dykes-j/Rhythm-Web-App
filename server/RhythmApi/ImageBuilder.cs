@@ -54,22 +54,15 @@ public class ImageBuilder
 
     private List<SKBitmap> GetRhythmImages()
     {
-        var list = new SKBitmap[_notes.Count]; 
+        var result = new List<SKBitmap>();
         var assembly = Assembly.GetExecutingAssembly();
-        var options = assembly.GetManifestResourceNames().ToList();
-        
-        // This has lots of problems.
-        foreach (string option in options)
+        foreach (string note in _notes)
         {
-            string imageLink = option.Replace("RhythmApi.src.", "").Replace(".jpg", "");
-            if (_notes.Contains(imageLink))
-            {
-                using var stream = assembly.GetManifestResourceStream(option); 
-                var item = SKBitmap.Decode(stream);
-                int index = _notes.IndexOf(imageLink); // Using index to keep the same order as before.
-                list[index] = item;
-            }
+            string path = $"RhythmApi.src.{note}.jpg";
+            using var stream = assembly.GetManifestResourceStream(path);
+            var item = SKBitmap.Decode(stream);
+            result.Add(item);
         }
-        return list.ToList();
+        return result;
     }
 }

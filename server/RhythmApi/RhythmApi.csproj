@@ -14,10 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers" />
-    </ItemGroup>
-
-    <ItemGroup>
       <EmbeddedResource Update="Images.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Images.Designer.cs</LastGenOutput>

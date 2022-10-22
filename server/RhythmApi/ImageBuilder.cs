@@ -43,7 +43,17 @@ public class ImageBuilder
     private SKBitmap GetTimeSignature()
     {
         var bitmap = new SKBitmap();
-        string timeSource = _timeSignature == 4 ? "RhythmApi.src.44.jpg" : "RhythmApi.src.34.jpg";
+        string timeSource = _timeSignature switch  {
+            4 => "RhythmApi.src.44.jpg",
+            3 => "RhythmApi.src.34.jpg",
+            2 => "RhythmApi.src.24.jpg",
+            5 => "RhythmApi.src.54.jpg",
+            6 => "RhythmApi.src.68.jpg",
+            7 => "RhythmApi.src.78.jpg",
+            9 => "RhythmApi.src.68.jpg",
+            12 => "RhythmApi.src.98.jpg",
+            _ => "RhythmApi.src.14.jpg",
+        };
         var assembly = Assembly.GetExecutingAssembly();
         using (var stream = assembly.GetManifestResourceStream(timeSource))
         {

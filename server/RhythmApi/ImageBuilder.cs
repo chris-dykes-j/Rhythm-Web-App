@@ -16,7 +16,7 @@ public class ImageBuilder
     }
 
     // Makes the image.
-    public SKBitmap MakeImage()
+    public SKImage MakeImage()
     {
         SKBitmap result;
         var start = GetTimeSignature();
@@ -36,7 +36,7 @@ public class ImageBuilder
                 x += rhythm.Width;
             });
         }
-        return result;
+        return SKImage.FromBitmap(result);
     }
     
     // Gets the time signature image

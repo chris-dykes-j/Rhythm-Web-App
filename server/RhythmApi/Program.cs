@@ -1,5 +1,3 @@
-using RhythmApi;
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 var app = builder.Build();
@@ -10,24 +8,18 @@ app.MapControllerRoute(
     name: "default",
     pattern: "/{time}/{div}/{notes}");
 
+app.Run();
+
 // More Test
+/*
 var data = new RhythmData(4, 4, 5);
 var rhythmBuilder = new RhythmBuilder(data);
 rhythmBuilder.MakeRhythm();
 string path = rhythmBuilder.GetImagePath();
 Console.WriteLine(path);
-
-// Need to figure out how this all works.
-// app.MapGet("/", () => "Cool test");
-
-/*
-app.MapGet("/{timeSignature}/{subDivision}/{totalNotes}", () => //"Hi");
-{
-    
-});
 */
 
-// app.Run();
+// Need to figure out how this all works.
 
 /*
 // Refactor as unit tests, later.

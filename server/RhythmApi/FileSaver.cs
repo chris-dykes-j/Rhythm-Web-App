@@ -22,5 +22,5 @@ public class FileSaver
         return result;
     }
     
-    public string GetPath => "./result/" + _filePath;
+    public string GetPath => "/result/" + _filePath;
 }

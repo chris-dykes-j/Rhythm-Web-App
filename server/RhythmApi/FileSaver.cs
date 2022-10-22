@@ -4,32 +4,23 @@ namespace RhythmApi;
 
 public class FileSaver
 {
-    private readonly SKImage _image;
-    private readonly List<string> _notes;
+    private string _filePath = null!;
     
-    private readonly string _filePath;
-    
-    public FileSaver(SKImage image, List<string> notes)
+    public void SaveImage(SKImage image, List<string> notes)
     {
-        _image = image;
-        _notes = notes;
-        _filePath = MakeFileName(".png"); 
-    }
-
-    public void SaveImage()
-    {
-        using var data = _image.Encode(SKEncodedImageFormat.Png, 80);
+        _filePath = MakeFileName(notes, ".png"); 
+        using var data = image.Encode(SKEncodedImageFormat.Png, 80);
         using var stream = File.OpenWrite(Path.Combine("./result", _filePath));
         data?.SaveTo(stream);
     }
 
-    private string MakeFileName(string fileType)
+    private string MakeFileName(List<string> notes, string fileType)
     {
         string result = "";
-        _notes.ForEach(note =>
-        {
-            result += note;
-        });
+        notes.ForEach(note => result += note);
+        result += fileType;
         return result;
     }
+    
+    public string GetPath => "./result/" + _filePath;
 }

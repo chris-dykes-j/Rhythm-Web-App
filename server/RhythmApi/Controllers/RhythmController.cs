@@ -7,12 +7,11 @@ namespace RhythmApi.Controllers;
 [Route("/{time:int}/{div:int}/{notes:int}")]
 public class RhythmController : ControllerBase
 {
-   public SKImage Get(int time, int div, int notes)
+   public string Get(int time, int div, int notes)
    {
-        var blueprint = new RhythmDesigner(4, 4, 10);
-        var beats = blueprint.AssignRhythms();
-        var imgBuilder = new ImageBuilder(beats, 4);
-        var result = imgBuilder.MakeImage();
-        return result;
+      var data = new RhythmData(time, div, notes);
+      var rhythmBuilder = new RhythmBuilder(data);
+      rhythmBuilder.MakeRhythm();
+      return rhythmBuilder.GetImagePath();
    } 
 }

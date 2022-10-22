@@ -1,5 +1,4 @@
 using RhythmApi;
-using SkiaSharp;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -10,6 +9,13 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "/{time}/{div}/{notes}");
+
+// More Test
+var data = new RhythmData(4, 4, 5);
+var rhythmBuilder = new RhythmBuilder(data);
+rhythmBuilder.MakeRhythm();
+string path = rhythmBuilder.GetImagePath();
+Console.WriteLine(path);
 
 // Need to figure out how this all works.
 // app.MapGet("/", () => "Cool test");
@@ -23,7 +29,7 @@ app.MapGet("/{timeSignature}/{subDivision}/{totalNotes}", () => //"Hi");
 
 // app.Run();
 
-
+/*
 // Refactor as unit tests, later.
 
 // Create blueprint test
@@ -40,3 +46,4 @@ var image = imgBuilder.MakeImage();
 using var data = image.Encode(SKEncodedImageFormat.Png, 80);
 using var stream = File.OpenWrite(Path.Combine("./src", "test.png"));
 data?.SaveTo(stream);
+*/

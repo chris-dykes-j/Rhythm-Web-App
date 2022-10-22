@@ -4,16 +4,15 @@ using SkiaSharp;
 namespace RhythmApi.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("/{time:int}/{div:int}/{notes:int}")]
 public class RhythmController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult<SKBitmap> Create(SKBitmap result)
-    {
-        var blueprint = new RhythmDesigner(4, 4, 2);
+   public SKImage Get(int time, int div, int notes)
+   {
+        var blueprint = new RhythmDesigner(4, 4, 10);
         var beats = blueprint.AssignRhythms();
         var imgBuilder = new ImageBuilder(beats, 4);
         var result = imgBuilder.MakeImage();
         return result;
-    }
+   } 
 }

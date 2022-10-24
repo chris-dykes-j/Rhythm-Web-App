@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace RhythmApi.Controllers;
 
 [ApiController]
-[Route("/{time:int}/{div:int}/{notes:int}")]
+[Route("/")]
 public class RhythmController : ControllerBase
 {
+   [HttpGet("{time:int}/{div:int}/{notes:int}")]
    public string Get(int time, int div, int notes)
    {
       var data = new RhythmData(time, div, notes);

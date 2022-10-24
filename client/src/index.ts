@@ -1,5 +1,5 @@
 // Use of global variables is maybe not good long term.
-const uri: string = ""; // Update later.
+const uri: string = "https://localhost:7108"; // Update later.
 let timeSignature: number, subDivision: number, totalNotes: number;
 
 // Validates input, and fetches api.
@@ -36,7 +36,7 @@ function validateInput(): boolean {
 
 // If valid, fetch with api url
 async function getRhythm() {
-  fetch(`${uri}?time=${timeSignature}&div=${subDivision}&notes=${totalNotes}`)
+  fetch(`${uri}/${timeSignature}/${subDivision}/${totalNotes}`)
     .then(response => response.json())
     .then(data => console.log(data));
 }

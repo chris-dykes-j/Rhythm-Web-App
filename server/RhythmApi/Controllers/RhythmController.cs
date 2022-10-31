@@ -14,6 +14,8 @@ public class RhythmController : ControllerBase
       var data = new RhythmData(time, div, notes);
       var rhythmBuilder = new RhythmBuilder(data);
       rhythmBuilder.MakeRhythm();
-      return new JsonResult(Ok(rhythmBuilder.GetImagePath()));
+
+      string imgPath = rhythmBuilder.GetImagePath();
+      return new JsonResult(Ok(imgPath));
    }
 }

@@ -1,10 +1,13 @@
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddControllers();
+// builder.Services.AddScoped(typeof(IWebHostEnvironment));
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "Client", policy =>
         policy.WithOrigins("http://127.0.0.1:5500"));
 });
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();

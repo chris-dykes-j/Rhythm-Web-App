@@ -1,12 +1,17 @@
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "Client", policy =>
+        policy.WithOrigins("http://127.0.0.1:5500"));
+});
 var app = builder.Build();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
-app.MapControllerRoute(
-    name: "default",
-    pattern: "/{time}/{div}/{notes}");
+app.UseCors("Client");
+app.UseStaticFiles();
+app.MapControllers();
 
 app.Run();
 

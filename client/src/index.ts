@@ -1,4 +1,3 @@
-// Use of global variables is maybe not good long term.
 const uri: string = "https://localhost:7108"; // Update later.
 let timeSignature: number, subDivision: number, totalNotes: number;
 
@@ -36,11 +35,17 @@ function validateInput(): boolean {
 
 // If valid, fetch with api url
 async function getRhythm() {
+  let img = <HTMLImageElement>document.getElementById("result");
   fetch(`${uri}/${timeSignature}/${subDivision}/${totalNotes}`)
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(response => {
+      console.log(response.value);
+      img.src = response.value;
+    })
+    .catch(error => console.log(error));
 }
 
+// Should be a popup later
 function displayError(): void {
-  
+  console.log("No!");
 }

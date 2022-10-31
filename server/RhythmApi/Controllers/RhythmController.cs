@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace RhythmApi.Controllers;
@@ -6,12 +7,13 @@ namespace RhythmApi.Controllers;
 [Route("/")]
 public class RhythmController : ControllerBase
 {
+   [EnableCors("Client")]
    [HttpGet("{time:int}/{div:int}/{notes:int}")]
-   public string Get(int time, int div, int notes)
+   public JsonResult Get(int time, int div, int notes)
    {
       var data = new RhythmData(time, div, notes);
       var rhythmBuilder = new RhythmBuilder(data);
       rhythmBuilder.MakeRhythm();
-      return rhythmBuilder.GetImagePath();
-   } 
+      return new JsonResult(Ok(rhythmBuilder.GetImagePath()));
+   }
 }

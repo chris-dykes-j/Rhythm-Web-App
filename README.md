@@ -1,5 +1,3 @@
-# Rhythm Builder v2
+# Rhythm WebApp
 
-Update for previous project, starting a clean slate. Still a work in progress, but will be mostly done by November!\
-Typescript validates data then fetches through rest api.\
-C# backend creates an image using data and sends back to the client.
+Creates a random rhythm, and spits out an image. Written in C#, with some help from Typescript.
